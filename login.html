@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/b40b50a1fb.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="login.css">
+    <title>Document</title>
+</head>
+<body>
+    <form>
+        <div class="field-name">
+            <i class="fas fa-user active"></i>
+            <input type="text" placeholder="Username" required>
+            <i class="fas fa-arrow-down"></i>
+        </div>
+        <div class="field-email innactive">
+            <i class="fas fa-envelope-open"></i>
+            <input type="text" placeholder="email" required>
+            <i class="fas fa-arrow-down"></i>
+        </div>
+        <div class="field-password innactive">
+            <i class="fas fa-key"></i>
+            <input type="text" placeholder="Password" required >
+            <i class="fas fa-arrow-down"></i>
+        </div>
+        <div class="field-thank innactive">
+            <i class="fas fa-heart"></i>
+             <p>Thank You!</p>
+            <i class="fas fa-heart"></i>
+        </div>
+        
+    </form>
+</body>
+</html>
+
+<script>
+    function animatedForm(){
+        const arrows=document.querySelectorAll(".fa-arrow-down");
+
+        arrows.forEach(arrow => {
+            arrow.addEventListener("click",()=>{
+                
+                const input=arrow.previousElementSibling;
+                const parent=arrow.parentElement;
+                const nextForm=parent.nextElementSibling;
+                console.log(input);
+                console.log(nextForm);
+                if(input.type==="text" && ValidateUser(input)){
+                    console.log("Everything is okay!");
+                    nextslide(parent,nextForm);
+                }
+            });
+        });
+    }
+    animatedForm();
+    function ValidateUser(user){
+        if(user.value.length<6){
+            console.log("not enough---");
+            error("red");
+        }
+        else{
+            error("rgb(104, 151, 32)");
+            return true;
+        }
+    }
+    function nextslide(parent,nextform){
+        parent.classList.add("innactive");
+        parent.classList.remove("active");
+        nextform.classList.add("active");
+        nextform.classList.remove("innactive");
+    }
+    function error(color){
+        document.body.style.backgroundColor=color;
+    }
+    // animatedForm();
+    // ***********************
+    
+</script>
